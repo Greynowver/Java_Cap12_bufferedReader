@@ -9,18 +9,10 @@ public class ProgramDois {
 	public static void main(String[] args) {
 		
 		String path = "C:\\Users\\andreygc\\Desktop\\Cursos\\Java Udemy\\Capitulo 12 - Manipulação de Arquivos\\Teste.txt";
-		FileReader fr = null;
-		BufferedReader br = null;
+	
 		
-		try {
-			fr = new FileReader(path);
-			br = new BufferedReader(fr);
-			
-			/* ou da seguinte forma:
-			
-			br = new BufferedReader(new FileReader(path));
-			
-			*/
+		try (BufferedReader br = new BufferedReader(new FileReader(path))){
+		
 			
 			String line = br.readLine();
 			
@@ -29,24 +21,12 @@ public class ProgramDois {
 				line = br.readLine();
 			}
 			
-			
 		}
 		catch( IOException e) {
 			System.out.println("Erro :" + e.getMessage());
 		}
-		finally {
-			try {
-			if ( br != null) {
-				br.close();
-			}
-			if ( fr != null) {
-				fr.close();
-			}
-			}
-			catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		
 	}
-
 }
+
+
